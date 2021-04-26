@@ -5,9 +5,11 @@ echo "In the next steps we going to set up our project together !!"
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         echo "nice !! your work on linux !!! "
         ostype_packages="apt"
+        node_type="nodejs"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         echo "it's okay, osX detected , great !!"
         ostype_packages="brew"
+        node_type="node"
 elif [[ "$OSTYPE" == "win32" ]]; then
         echo "No solutions for Win32 yet =/"
 else
@@ -20,7 +22,7 @@ if [ -x "$(command -v docker)" ]; then
     echo "Update docker"
     sudo $ostype_packages update
     echo "installing nodejs"
-    sudo $ostype_packages install nodejs
+    sudo $ostype_packages install $node_type
 else
     echo "you must Install docker\nlet see : https://docs.docker.com/get-docker/"
     exit 1
@@ -44,6 +46,24 @@ npm install @types/express
 
 
 npm install typescript 
+
+touch .env
+
+read -p "Whitch port yould you work with ? [80]" myPort
+case ${myPort:0:1} in
+    *[!0-9]*)
+        echo "not a number"
+        echo "bye"
+        exit 1
+
+    '' )
+        echo "$myPort selected"
+        echo "PORT=$myPort" > .env
+
+    * )
+        echo "port 80 selected"
+        echo "PORT=80" > .env
+esac
 
 #touch src/app.ts
 
@@ -73,23 +93,23 @@ npx eslint src/app.ts --fix #execute ESlint --fix
 
 # touch Dockerfile
 
-# echo "FROM node:14" > Dockerfile
-# echo "WORKDIR /app" > Dockerfile
-# echo "COPY . ." > Dockerfile
-# echo "RUN npm install" > Dockerfile
-# echo "EXPOSE 3005" > Dockerfile
-# echo "CMD [ "npm", "start" ]" > Dockerfile
+# echo "FROM node:14" >> Dockerfile
+# echo "WORKDIR /app" >< Dockerfile
+# echo "COPY . ." >> Dockerfile
+# echo "RUN npm install" >> Dockerfile
+# echo "EXPOSE 3005" >> Dockerfile
+# echo "CMD [ "npm", "start" ]" >> Dockerfile
 
 # touch .dockerignore
 
-# echo "node_modules" > .dockerignore
-# echo "npm-debug.log" > .dockerignore
+# echo "node_modules" >> .dockerignore
+# echo "npm-debug.log" >> .dockerignore
 
 # cat .dockerignore
 
 docker build . -t node-azure-web-app 
 
-docker run -it -p 3005:3005 --name azure -d node-azure-web-app
+docker run -it -p $myPort:$myPort --name azure -d node-azure-web-app
 
 
 

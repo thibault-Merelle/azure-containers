@@ -26,7 +26,7 @@ this project is part of my course at simplon school
 ## install && run :
 
 Clone this repository and follow the instructions with:
-```
+```ruby
 git clone https://github.com/thibault-Merelle/azure-containers.git 
 ```
 
