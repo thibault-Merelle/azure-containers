@@ -32,7 +32,7 @@ git clone https://github.com/thibault-Merelle/azure-containers.git
 
 then in your root directory execute :
 ```ruby
-  sh ./init.sh 
+  sh ./__init__.sh 
 ```
 ## requirements :
 
@@ -42,4 +42,7 @@ then in your root directory execute :
 
 - Have azure CLI (we check it either)
 
-- V1 runs exclusively on Ubuntu OS
+
+## Achievements :
+
+- V1 runs exclusively on Ubuntu OS and os X
