@@ -26,14 +26,14 @@ this project is part of my course at simplon school
 ## install && run :
 
 Clone this repository and follow the instructions with:
-
-< git clone https://github.com/thibault-Merelle/azure-containers.git >>
-
+```
+git clone https://github.com/thibault-Merelle/azure-containers.git 
+```
 
 then in your root directory execute :
-
- < sh ./init.sh >>
-
+```ruby
+  sh ./init.sh 
+```
 ## requirements :
 
 - Have a azure registry !
