@@ -38,6 +38,8 @@ then in your root directory execute :
 
 - Have a azure registry !
 
-- we going to install azure CLI and docker if you doesn't have yet.
+- Have Docker installed (we going to check it)
+
+- Have azure CLI (we check it either)
 
 - V1 runs exclusively on Ubuntu OS

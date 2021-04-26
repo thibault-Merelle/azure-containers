@@ -2,11 +2,11 @@
   "name": "azure-docker",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src/app.ts --fix",
-    "start": "ts-node-dev src/app.ts"
+    "lint": "eslint src/server.ts --fix",
+    "start": "ts-node-dev src/server.ts"
   },
   "author": "",
   "license": "ISC",

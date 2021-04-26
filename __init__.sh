@@ -1,29 +1,41 @@
-mkdir myserver
-
-cd myserver
-
-git clone .....
-
-# if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-#         # ...
-# elif [[ "$OSTYPE" == "darwin"* ]]; then
-#         # Mac OSX
-# elif [[ "$OSTYPE" == "cygwin" ]]; then
-#         # POSIX compatibility layer and Linux environment emulation for Windows
-# elif [[ "$OSTYPE" == "msys" ]]; then
-#         # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-# elif [[ "$OSTYPE" == "win32" ]]; then
-#         # I'm not sure this can happen.
-# elif [[ "$OSTYPE" == "freebsd"* ]]; then
-#         # ...
-# else
-#         # Unknown.
-# fi
+echo "--Welcome on init.sh --"
+echo "In the next steps we going to set up our project together !!"
 
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        echo "nice !! your work on linux !!! "
+        ostype_packages="apt"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+        echo "it's okay, osX detected , great !!"
+        ostype_packages="brew"
+elif [[ "$OSTYPE" == "win32" ]]; then
+        echo "No solutions for Win32 yet =/"
+else
+        echo "Sorry i don't recognize your current OS"
+        exit 1
+fi
 
 
-sudo apt update && sudo apt install nodejs
+if [ -x "$(command -v docker)" ]; then
+    echo "Update docker"
+    sudo $ostype_packages update
+    echo "installing nodejs"
+    sudo $ostype_packages install nodejs
+else
+    echo "you must Install docker\nlet see : https://docs.docker.com/get-docker/"
+    exit 1
+fi
+
+if [ -x "$(command -v az)" ]; then
+    echo "Update azure-cli"
+    sudo az update -y
+
+else
+    echo "you must Install azure-cli to continue\nlet see : https://docs.microsoft.com/fr-fr/cli/azure/install-azure-cli"
+    exit 1
+fi
+
+
 
 npm install
 
@@ -57,13 +69,6 @@ npx eslint src/app.ts --fix #execute ESlint --fix
 #--------Docker : --------
 
 #localy
-    #if you need to install docker :
-
-        #https://docs.docker.com/engine/install/ubuntu/
-            # sudo apt-get update
-
-            # sudo apt-get install docker-ce docker-ce-cli containerd.io
-
 
 
 # touch Dockerfile
