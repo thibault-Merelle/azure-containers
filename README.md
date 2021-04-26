@@ -27,12 +27,12 @@ this project is part of my course at simplon school
 
 Clone this repository and follow the instructions with:
 
-< git clone https://github.com/thibault-Merelle/azure-containers.git >
+< git clone https://github.com/thibault-Merelle/azure-containers.git >>
 
 
 then in your root directory execute :
 
- < sh ./init.sh >
+ < sh ./init.sh >>
 
 ## requirements :
 
